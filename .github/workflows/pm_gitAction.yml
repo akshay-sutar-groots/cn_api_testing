@@ -20,7 +20,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@v2 # Use v2 since v3 may not exist
+        uses: actions/checkout@v3 # Use v2 since v3 may not exist
 
       # Create directory
       - name: Create directory
