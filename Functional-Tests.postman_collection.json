@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "5d1fb7b4-757e-4a73-93ae-5ea2eb1b26e0",
+		"name": "Functional-Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28796228"
+	},
+	"item": [
+		{
+			"name": "AuthToken (Run Me First) Copy",
+			"item": [
+				{
+					"name": "TokenRequest(RUN ME FIRST)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status Code should be 200\"] = responseCode.code === 200\r",
+									"tests[\"Response time lesser than 100ms\"] = responseTime < 200\r",
+									"\r",
+									"var res = pm.response.json();\r",
+									"pm.environment.set('token', res.data.Users.token);\r",
+									"pm.environment.set('user_id',res.data.Users.user_id);\r",
+									"pm.globals.set('organization_id',res.data.Users.organization_id);\r",
+									"pm.globals.set('organization_name',res.data.Users.organization_name);\r",
+									"pm.globals.set('role_name',res.data.Users.role_name);\r",
+									"pm.environment.set('refresh_token',res.data.Users.refresh_token);\r",
+									"\r",
+									"console.log(\"Tokan is: \"+res.data.Users.token);\r",
+									"console.log(\"Refresh Tokan is: \"+res.data.Users.refresh_token);\r",
+									"console.log(\"User is: \"+res.data.Users.user_id);\r",
+									"console.log(\"Organization id is: \"+res.data.Users.organization_id);\r",
+									"console.log(\"Organization name is: \"+res.data.Users.organization_name);\r",
+									"console.log(\"Role name is: \"+res.data.Users.role_name);\r",
+									"\r",
+									"pm.test(\"Verify Success message\", function(){\r",
+									"\tpm.expect(\"User Login Success\").to.include(res.message)\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"{{adminUsername}}\",\r\n    \"password\":\"{{encrypted_password}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "**Description**\n\nThis Postman collection is designed to streamline the process of authentication and token generation for use in various other collections and requests. The \"AuthToken\" collection provides a set of requests and scripts to obtain and manage authentication tokens required for accessing secured APIs. The generated tokens are stored in environment variables for easy reuse in subsequent requests.\n\n**How to Use**\n\n1. Setup the necessory environment variables, including base url, username, password, etc. to match your authentication requirements.\n2. Execute the \"TokenRequest\" request to obtain an access token from your authentication server.\n3. The response will automatically extract the access token and store it in the `token` environment variable.\n4. Use the stored token in other collections and requests by referencing \\`\\` in your Authorization headers.\n    \n\nBy utilizing the \"AuthToken\" collection, you can simplify the process of managing authentication tokens, ensuring secure and efficient access to your APIs across different Postman collections.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Load CryptoJS Library",
+							"eval(pm.environment.get('cryptojs-path'));",
+							"",
+							"// Encrypt a password using CryptoJS",
+							"const key = CryptoJS.enc.Utf8.parse(pm.environment.get(\"AESKEY\"));",
+							"const iv = CryptoJS.enc.Utf8.parse(pm.environment.get(\"AESIVKEY\"));",
+							"",
+							"const encrypted_password = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(pm.environment.get(\"adminPassword\").toString()), key, { keySize:pm.environment.get(\"AESKEY\").length, iv: iv });",
+							"pm.globals.set(\"encrypted_password\", encrypted_password.toString());",
+							"",
+							"// Log the encrypted message",
+							"console.log(\"Encrypted Password: \"+encrypted_password.toString());",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
