@@ -63,6 +63,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      - name: Checkout
+
+      # Create directory
       - name: Create dir
         run: mkdir TestArtifact
 
@@ -70,7 +73,7 @@ jobs:
       - uses: actions/setup-node@v3
       - name: Install node
         with:
-          node-version: "18.x"
+          node-version: 18
 
       # Install newman globally
       - name: Install newman
