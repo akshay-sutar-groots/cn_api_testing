@@ -45,7 +45,7 @@ jobs:
 
       # Upload The Reports To TestArtifacts Directory
       - name: Export results
-        uses: actions/upload@v3
+        uses: actions/upload-artifact@v2
         with: 
             name: Reports
             path: TestArtifact
