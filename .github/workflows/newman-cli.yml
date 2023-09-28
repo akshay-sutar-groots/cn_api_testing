@@ -40,8 +40,8 @@ jobs:
           
       # Run the POSTMAN collection
       - name: Run Collections
-        run: newman run "Functional-Tests.postman_collection.json" -e "DEV.postman_environment.json" -g "workspace.postman_globals.json" -r htmlextra --reporter-htmlextra-export TestResults/report.html
-        continue-on-error: true
+        run: newman run "collections/Functional-Tests.postman_collection.json" -e "collections/DEV.postman_environment.json" -g "collections/workspace.postman_globals.json" -r htmlextra --reporter-htmlextra-export TestResults/report.html
+        #continue-on-error: true
         
       # Publish The Reports
       - name: Publish reports
