@@ -41,5 +41,11 @@ jobs:
           
       # Run the POSTMAN collection
       - name: Run Tests
-        run: newman run "Functional-Tests.postman_collection.json" -e "DEV.postman_environment.json" -g "workspace.postman_globals.json" -r cli,htmextra --reporter-htmlextra-export TestArtifacts/htmlreport.html
-        
+        run: newman run "Functional-Tests.postman_collection.json" -e "DEV.postman_environment.json" -g "workspace.postman_globals.json" -r cli,htmextra --reporter-htmlextra-export TestArtifact/htmlreport.html
+
+      # Upload The Reports To TestArtifacts Directory
+      - name: Export results
+        uses: actions/upload@v3
+        with: 
+            name: Reports
+            path: TestArtifact
