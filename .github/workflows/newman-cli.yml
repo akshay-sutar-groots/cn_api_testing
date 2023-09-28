@@ -24,7 +24,7 @@ jobs:
 
       # Create directory
       - name: Create directory
-        run: mkdir TestArtifact
+        run: mkdir TestResults
 
       # Install Node On The Runner
       - name: Set up Node.js
@@ -36,16 +36,15 @@ jobs:
       - name: Install Newman
         run: |
           npm install -g newman
-          npm install -g newman-reporter-slackreporter
           npm install -g newman-reporter-htmlextra
           
       # Run the POSTMAN collection
-      - name: Run Tests
-        run: newman run "Functional-Tests.postman_collection.json" -e "DEV.postman_environment.json" -g "workspace.postman_globals.json" -r cli,htmextra --reporter-htmlextra-export TestArtifacts/htmlreport.html
+      - name: Run Collections
+        run: newman run "Functional-Tests.postman_collection.json" -e "DEV.postman_environment.json" -g "workspace.postman_globals.json" -r htmextra --reporter-htmlextra-export TestResults/report.html
 
-      # Upload The Reports To TestArtifacts Directory
-      - name: Export results
+      # Publish The Reports
+      - name: Publish reports
         uses: actions/upload-artifact@v3
         with: 
             name: Reports
-            path: TestArtifacts
+            path: TestResults
