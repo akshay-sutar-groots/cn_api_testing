@@ -41,5 +41,5 @@ jobs:
 
       # Run the POSTMAN collection
       - name: Run Tests
-        run: newman run "Admin.postman_collection.json" -e "DEV.postman_environment.json" -g "workspace.postman_globals.json" -r cli, htmextra --reporter-htmlextra-export testArtifacts/htmlreport.html
+        run: newman run "Admin.postman_collection.json" -e "DEV.postman_environment.json" -g "workspace.postman_globals.json" -r cli, htmextra --reporter-htmlextra-export TestArtifacts/htmlreport.html
         
