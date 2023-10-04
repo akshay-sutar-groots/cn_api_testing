@@ -10,6 +10,15 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 # Allows you to run this workflow manually from the Actions tab
 jobs:
   # This workflow contains a single job called "test-api"
