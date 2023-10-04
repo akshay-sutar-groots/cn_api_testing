@@ -74,7 +74,7 @@ jobs:
       #   id: deployment
 
       - name: Deploy
-        uses: akshay-sutar-groots/cn_api_testing/@v4
+        uses: akshay-sutar-groots/cn_api_testing/@v2
         with:
           path: TestResults
           branch: gh-pages
