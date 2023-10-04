@@ -81,10 +81,10 @@ jobs:
       #     unzip TestResults/Reports.zip
       #     ls -a
       
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v1
-        with: 
-          path: 'TestResults'
+      # - name: Upload Artifact
+      #   uses: actions/upload-pages-artifact@v1
+      #   with: 
+      #     path: 'TestResults'
 
       - name: Deploy to Github Pages
         uses: actions/deploy-pages@v2
