@@ -67,24 +67,11 @@ jobs:
       #   with: 
       #       name: Reports
       #       path: TestResults
-
-      # # Publish The Reports
-      # - name: Deploy
-      #   uses: akshay-sutar-groots/cn_api_testing@v3
-      #   with:
-      #     folder: TestResults
-      #     branch: gh-pages
-
-      # # Extract Zip file
-      # - name: Extract Zip file (Reports.zip)
-      #   run: |
-      #     unzip TestResults/Reports.zip
-      #     ls -a
       
-      # - name: Upload Artifact
-      #   uses: actions/upload-pages-artifact@v1
-      #   with: 
-      #     path: 'TestResults'
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v1
+        with: 
+          path: 'TestResults'
 
       - name: Deploy to Github Pages
         uses: actions/deploy-pages@v2
