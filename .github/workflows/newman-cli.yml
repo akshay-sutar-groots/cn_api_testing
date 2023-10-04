@@ -61,12 +61,12 @@ jobs:
         run: newman run "collections/reqres.json" -r cli,htmlextra --reporter-htmlextra-export TestResults/report.html
         continue-on-error: true
         
-      # Publish The Reports
-      - name: Publish reports
-        uses: actions/upload-artifact@v3
-        with: 
-            name: Reports
-            path: TestResults
+      # # Publish The Reports
+      # - name: Publish reports
+      #   uses: actions/upload-artifact@v3
+      #   with: 
+      #       name: Reports
+      #       path: TestResults
 
       # # Publish The Reports
       # - name: Deploy
@@ -78,12 +78,13 @@ jobs:
       # Extract Zip file
       - name: Extract Zip file (Reports.zip)
         run: |
-          unzip ./TestResults/Reports.zip
+          unzip TestResults/Reports.zip
+          ls -a
       
-      - name: upload artifact
+      - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         with: 
-          path: './TestResults/Reports/'
+          path: 'TestResults/Reports/report.html'
 
       - name: Deploy to Github Pages
         uses: actions/deploy-pages@v2
