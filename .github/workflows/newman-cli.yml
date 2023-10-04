@@ -54,3 +54,10 @@ jobs:
         with: 
             name: Reports
             path: TestResults
+
+      # Publish The Reports
+      - name: Deploy
+        uses: akshay-sutar-groots/cn_api_testing@v3
+        with:
+          folder: TestResults
+          branch: gh-pages
