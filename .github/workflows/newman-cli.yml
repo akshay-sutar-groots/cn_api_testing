@@ -23,6 +23,10 @@ concurrency:
 jobs:
   # This workflow contains a single job called "test-api"
   test-api:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} 
+      
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
