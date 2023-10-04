@@ -74,9 +74,10 @@ jobs:
       #   id: deployment
 
       - name: Deploy
-        uses: akshay-sutar-groots/gh-pages/@v4
+        uses: akshay-sutar-groots/cn_api_testing/@v4
         with:
           path: TestResults
+          branch: gh-pages
           # clean: true
           # clean-exclude: |
           #   special-file.txt
