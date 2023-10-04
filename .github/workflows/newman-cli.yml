@@ -38,9 +38,14 @@ jobs:
           npm install -g newman
           npm install -g newman-reporter-htmlextra
           
-      # Run the POSTMAN collection
+      # # Run the POSTMAN collection
+      # - name: Run Collections
+      #   run: newman run "collections/Functional-Tests.postman_collection.json" -e "collections/DEV.postman_environment.json" -g "collections/workspace.postman_globals.json" -r cli,htmlextra --reporter-htmlextra-export TestResults/report.html
+      #   continue-on-error: true
+
+        # Run the POSTMAN collection
       - name: Run Collections
-        run: newman run "collections/Functional-Tests.postman_collection.json" -e "collections/DEV.postman_environment.json" -g "collections/workspace.postman_globals.json" -r cli,htmlextra --reporter-htmlextra-export TestResults/report.html
+        run: newman run "collections/reqres.json" -r cli,htmlextra --reporter-htmlextra-export TestResults/report.html
         continue-on-error: true
         
       # Publish The Reports
