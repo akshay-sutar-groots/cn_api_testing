@@ -55,9 +55,18 @@ jobs:
             name: Reports
             path: TestResults
 
-      # Publish The Reports
-      - name: Deploy
-        uses: akshay-sutar-groots/cn_api_testing@v3
-        with:
-          folder: TestResults
-          branch: gh-pages
+      # # Publish The Reports
+      # - name: Deploy
+      #   uses: akshay-sutar-groots/cn_api_testing@v3
+      #   with:
+      #     folder: TestResults
+      #     branch: gh-pages
+
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with: 
+          path: './TestResults/'
+
+      - name: Deploy to Github Pages
+        uses: actions/deploy-pages@v2
+        id: deployment
