@@ -60,13 +60,6 @@ jobs:
       - name: Run Collections
         run: newman run "collections/reqres.json" -r cli,htmlextra --reporter-htmlextra-export TestResults/index.html
         continue-on-error: true
-        
-      # # Publish The Reports
-      # - name: Publish reports
-      #   uses: actions/upload-artifact@v3
-      #   with: 
-      #       name: Reports
-      #       path: TestResults
       
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
