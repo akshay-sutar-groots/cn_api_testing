@@ -58,7 +58,7 @@ jobs:
 
         # Run the POSTMAN collection
       - name: Run Collections
-        run: newman run "collections/reqres.json" -r cli,htmlextra --reporter-htmlextra-export TestResults/report.html
+        run: newman run "collections/reqres.json" -r cli,htmlextra --reporter-htmlextra-export TestResults/index.html
         continue-on-error: true
         
       # # Publish The Reports
