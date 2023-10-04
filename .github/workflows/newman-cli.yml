@@ -75,16 +75,16 @@ jobs:
       #     folder: TestResults
       #     branch: gh-pages
 
-      # Extract Zip file
-      - name: Extract Zip file (Reports.zip)
-        run: |
-          unzip TestResults/Reports.zip
-          ls -a
+      # # Extract Zip file
+      # - name: Extract Zip file (Reports.zip)
+      #   run: |
+      #     unzip TestResults/Reports.zip
+      #     ls -a
       
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         with: 
-          path: 'TestResults/Reports/report.html'
+          path: 'TestResults'
 
       - name: Deploy to Github Pages
         uses: actions/deploy-pages@v2
